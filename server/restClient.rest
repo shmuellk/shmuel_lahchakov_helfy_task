@@ -1,0 +1,52 @@
+### Get all tasks
+GET http://localhost:8080/api/tasks
+Content-Type: application/json
+
+###
+
+### Create a new task
+POST http://localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Buy grs",
+  "description": "Milk, eggs, bread",
+  "priority": "high"
+}
+
+###
+
+### Create another task
+POST http://localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Finish homework",
+  "description": "Math and English exercises",
+  "priority": "medium"
+}
+
+###
+
+### Update a task
+PUT http://localhost:8080/api/tasks/2
+Content-Type: application/json
+
+{
+  "title": "Buy groceries and fruits",
+  "description": "Milk, eggs, bread, apples",
+  "priority": "medium",
+  "completed": true
+}
+
+###
+
+### Toggle task completion
+PATCH http://localhost:8080/api/tasks/1/toggle
+Content-Type: application/json
+
+###
+
+### Delete a task
+DELETE http://localhost:8080/api/tasks/1
+Content-Type: application/json
