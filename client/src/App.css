@@ -1,3 +1,4 @@
+
 body {
   font-family: "Segoe UI", sans-serif;
   background: #f3f4f6;
@@ -6,7 +7,7 @@ body {
 }
 
 .app {
-  max-width: 700px;
+  max-width: 900px;
   margin: auto;
   padding: 2rem;
   background: white;
@@ -19,6 +20,7 @@ h1 {
   color: #1a2540;
   margin-bottom: 1rem;
 }
+
 
 .task-form {
   display: flex;
@@ -33,6 +35,17 @@ h1 {
   border: 1px solid #ccc;
   flex: 1;
 }
+
+.task-form select option[value="low"] {
+  color: #3b82f6;
+}
+.task-form select option[value="medium"] {
+  color: #f59e0b;
+}
+.task-form select option[value="high"] {
+  color: #ef4444;
+}
+
 
 .btn {
   padding: 8px 12px;
@@ -71,29 +84,23 @@ h1 {
   font-weight: bold;
 }
 
-.task-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
 
 .task-item {
   background: #f9fafb;
-  margin-bottom: 12px;
   padding: 15px;
   border-radius: 10px;
-  border-left: 6px solid #ddd;
-  transition: 0.3s;
+  border-top: 5px solid transparent;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .task-item.low {
-  border-color: #3b82f6;
+  border-top-color: #3b82f6;
 }
 .task-item.medium {
-  border-color: #facc15;
+  border-top-color: #facc15;
 }
 .task-item.high {
-  border-color: #ef4444;
+  border-top-color: #ef4444;
 }
 
 .task-item.done {
@@ -122,71 +129,6 @@ h1 {
   gap: 10px;
 }
 
-.task-filter {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.task-filter button {
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background: #fff;
-  cursor: pointer;
-}
-
-.task-filter .active {
-  background: #1a2540;
-  color: white;
-}
-
-.task-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  max-height: 400px;   
-  overflow-y: auto;        
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  background: #ffffff;
-}
-
-.task-list::-webkit-scrollbar {
-  width: 8px;
-}
-
-.task-list::-webkit-scrollbar-track {
-  background: #f3f4f6;
-  border-radius: 10px;
-}
-
-.task-list::-webkit-scrollbar-thumb {
-  background-color: #9ca3af;
-  border-radius: 10px;
-}
-
-.task-list::-webkit-scrollbar-thumb:hover {
-  background-color: #6b7280;
-}
-.task-form select option[value="low"] {
-  color: #3b82f6; /* Blue */
-}
-
-.task-form select option[value="medium"] {
-  color: #f59e0b; /* Amber */
-}
-
-.task-form select option[value="high"] {
-  color: #ef4444; /* Red */
-}
-
-.empty {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #6b7280;
-}
 
 .edit-mode {
   display: flex;
@@ -215,20 +157,129 @@ h1 {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
-.edit-mode select {
-  cursor: pointer;
-  font-weight: 500;
-}
 
 .edit-mode select option[value="low"] {
   color: #3b82f6;
 }
-
 .edit-mode select option[value="medium"] {
   color: #f59e0b;
 }
-
 .edit-mode select option[value="high"] {
   color: #ef4444;
 }
 
+
+.task-filter {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.task-filter button {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+
+.task-filter .active {
+  background: #1a2540;
+  color: white;
+}
+
+
+.empty {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+
+.carousel-container {
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+  min-height: 350px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+  width: 100%;
+}
+
+.carousel-page {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex: 0 0 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.carousel-card {
+  flex: 0 0 30%;
+  min-width: 220px;
+  max-width: 240px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.carousel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+
+.carousel-controls {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #2563eb;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-btn:hover {
+  background: #1a2540;
+  transform: scale(1.1);
+}
+
+
+.indicators {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d1d5db;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dot.active {
+  background: #2563eb;
+}

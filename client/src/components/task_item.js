@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 
-const TaskItem =({ task, onUpdate, onDelete, onToggle })=> {
+const TaskItem =({ task, onUpdate, onDelete, onToggle,onEditingChange  })=> {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
   const [priority, setPriority] = useState(task.priority);
+
+  useEffect(() => {
+    if (onEditingChange) {
+      onEditingChange(isEditing);
+    }
+  }, [isEditing, onEditingChange]);
 
   const handleSave=() =>{
     onUpdate(task.id, { ...task, title, description, priority });
